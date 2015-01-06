@@ -23,6 +23,7 @@ namespace GOEddie.Dacpac.References
         {
             var part = _package.GetPart(new Uri(string.Format("/{0}", fileName), UriKind.Relative));
             var stream = part.GetStream();
+            
             return new StreamReader(stream).ReadToEnd();
         }
 
@@ -30,11 +31,18 @@ namespace GOEddie.Dacpac.References
         {
             var part = _package.GetPart(new Uri(string.Format("/{0}", fileName), UriKind.Relative));
             var stream = part.GetStream();
+            
             var bytes = ASCIIEncoding.ASCII.GetBytes(xml);
+            stream.SetLength(bytes.Length);
             stream.Write(bytes, 0, bytes.Length);
 
             _package.Close();
             _package = Package.Open(_dacPath, FileMode.Open, FileAccess.ReadWrite);
+        }
+
+        public void Close()
+        {
+            _package.Close();
         }
     }
 }

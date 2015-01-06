@@ -15,11 +15,11 @@ namespace TheReferencer
             editor.AddCustomData("Edd", null);
             editor.DeleteCustomMetadata("Reference", "SqlSchema", "FileName");
             editor.DeleteCustomData("QuotedIdentifier");
-            
-
+            editor.CommitChanges();
+            editor.Close();
             var parser = new HeaderParser(args[0]);
 
-            foreach (var cd in parser.GetCustomData())
+            foreach (var cd in parser.GetCustomData().Where(p=>p.Category=="Reference" && p.Type == "SqlSchema"))
             {
                 Console.WriteLine("Data: {0} - {1}", cd.Category, cd.Type);
                 foreach (var item in cd.Items)
