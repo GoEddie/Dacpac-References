@@ -106,6 +106,9 @@ namespace GOEddie.Dacpac.References
         public void Close()
         {
             _dac.Close();
+
+            var checksumWriter = new ModelChecksumWriter(_dacpacPath);
+            checksumWriter.FixChecksum();
         }
     }
 }

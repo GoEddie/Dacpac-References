@@ -8,7 +8,7 @@ using System.IO.Packaging;
 
 namespace GOEddie.Dacpac.References
 {
-    class DacHacXml
+    public class DacHacXml : IDisposable
     {
         private readonly string _dacPath;
         private Package _package;
@@ -27,6 +27,13 @@ namespace GOEddie.Dacpac.References
             return new StreamReader(stream).ReadToEnd();
         }
 
+        public Stream GetStream(string fileName)
+        {
+            var part = _package.GetPart(new Uri(string.Format("/{0}", fileName), UriKind.Relative));
+            var stream = part.GetStream();
+            return stream;
+        }
+
         public void SetXml(string fileName, string xml)
         {
             var part = _package.GetPart(new Uri(string.Format("/{0}", fileName), UriKind.Relative));
@@ -43,6 +50,11 @@ namespace GOEddie.Dacpac.References
         public void Close()
         {
             _package.Close();
+        }
+
+        public void Dispose()
+        {
+            Close();
         }
     }
 }
