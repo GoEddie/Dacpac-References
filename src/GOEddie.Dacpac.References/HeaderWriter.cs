@@ -77,8 +77,7 @@ namespace GOEddie.Dacpac.References
 
             var ns = XNamespace.Get("http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02");
 
-            var node = element.XPathSelectElement("//p:Header/p:CustomData[@Category='SqlCmdVariables']",
-                namespaceManager);
+            var node = element.XPathSelectElement("//p:Header/p:CustomData[@Category='SqlCmdVariables']", namespaceManager);
             if (node != null)
             {
                 root = element;
@@ -107,6 +106,11 @@ namespace GOEddie.Dacpac.References
             var ns = XNamespace.Get("http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02");
 
             var header = element.XPathSelectElement("//p:Header", namespaceManager);
+            if (header == null)
+            {
+                header = new XElement(ns + "Header");
+                element.AddFirst(header); 
+            }
 
             var newNode = new XElement(ns + "CustomData");
             newNode.SetAttributeValue("Category", categoryName);

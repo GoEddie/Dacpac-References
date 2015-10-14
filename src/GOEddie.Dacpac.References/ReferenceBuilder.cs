@@ -17,6 +17,7 @@
             customData.AddMetadata("LogicalName", logicalName);
             customData.AddMetadata("ExternalParts", string.Format("[{0}]", dbName));
             customData.AddMetadata("SuppressMissingDependenciesErrors", "False");
+
             return customData;
         }
 
