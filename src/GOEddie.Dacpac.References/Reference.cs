@@ -1,17 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GOEddie.Dacpac.References
+﻿namespace GOEddie.Dacpac.References
 {
     public class Reference
     {
-        public string Path;
-        public string LogicalName;
         public string ExternalParts;
+        public string LogicalName;
+        public string Path;
         public bool SupresExternalMissingDependencyErrors;
-
-        public ReferenceType Type;
     }
 }

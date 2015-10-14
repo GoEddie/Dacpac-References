@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO.Packaging;
+using System.Text;
 
 namespace GOEddie.Dacpac.References
 {
@@ -19,11 +16,16 @@ namespace GOEddie.Dacpac.References
             _package = Package.Open(dacPath, FileMode.Open, FileAccess.ReadWrite);
         }
 
+        public void Dispose()
+        {
+            Close();
+        }
+
         public string GetXml(string fileName)
         {
             var part = _package.GetPart(new Uri(string.Format("/{0}", fileName), UriKind.Relative));
             var stream = part.GetStream();
-            
+
             return new StreamReader(stream).ReadToEnd();
         }
 
@@ -38,8 +40,8 @@ namespace GOEddie.Dacpac.References
         {
             var part = _package.GetPart(new Uri(string.Format("/{0}", fileName), UriKind.Relative));
             var stream = part.GetStream();
-            
-            var bytes = ASCIIEncoding.ASCII.GetBytes(xml);
+
+            var bytes = Encoding.ASCII.GetBytes(xml);
             stream.SetLength(bytes.Length);
             stream.Write(bytes, 0, bytes.Length);
 
@@ -50,11 +52,6 @@ namespace GOEddie.Dacpac.References
         public void Close()
         {
             _package.Close();
-        }
-
-        public void Dispose()
-        {
-            Close();
         }
     }
 }

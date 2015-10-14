@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ModelChecksumWriterTests.cs" />
+    <Compile Include="CustomDataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadHeaderTests.cs" />
+    <Compile Include="ReferenceBuilderTests.cs" />
+    <Compile Include="WriteHeaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

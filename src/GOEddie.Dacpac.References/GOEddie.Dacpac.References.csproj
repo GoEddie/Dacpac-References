@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomData.cs" />
+    <Compile Include="DacHacFactory.cs" />
     <Compile Include="DacpacXml.cs" />
     <Compile Include="HeaderWriter.cs" />
     <Compile Include="Metadata.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reference.cs" />
     <Compile Include="HeaderParser.cs" />
-    <Compile Include="ReferenceType.cs" />
+    <Compile Include="ReferenceBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

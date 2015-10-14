@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace GOEddie.Dacpac.References
@@ -32,7 +26,6 @@ namespace GOEddie.Dacpac.References
 
             while (reader.Read())
             {
-
                 if (reader.Name == "CustomData" && reader.NodeType == XmlNodeType.Element)
                 {
                     var cat = reader.GetAttribute("Category");
@@ -52,7 +45,7 @@ namespace GOEddie.Dacpac.References
 
                 if (reader.Name == "Header" && reader.NodeType == XmlNodeType.EndElement)
                 {
-                    break;  //gone too far
+                    break; //gone too far
                 }
             }
             dac.Close();

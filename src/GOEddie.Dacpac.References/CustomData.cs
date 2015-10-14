@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace GOEddie.Dacpac.References
 {
     public class CustomData
     {
+        private readonly Dictionary<string, Metadata> _items = new Dictionary<string, Metadata>();
         public readonly string Category;
         public readonly string Type;
-        public List<Metadata> Items = new List<Metadata>();
+        public List<string> RequiredSqlCmdVars = new List<string>();
 
         public CustomData(string category, string type)
         {
@@ -14,9 +16,14 @@ namespace GOEddie.Dacpac.References
             Type = type;
         }
 
+        public List<Metadata> Items
+        {
+            get { return _items.Values.ToList(); }
+        }
+
         public void AddMetadata(string name, string value)
         {
-            Items.Add(new Metadata(name, value));
+            _items[name] = new Metadata(name, value);
         }
     }
 }
